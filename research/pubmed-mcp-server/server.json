@@ -1,0 +1,147 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.cyanheads/pubmed-mcp-server",
+  "description": "Search PubMed/Europe PMC, fetch articles and full text (PMC/EPMC/Unpaywall), citations, MeSH terms.",
+  "repository": {
+    "url": "https://github.com/cyanheads/pubmed-mcp-server",
+    "source": "github"
+  },
+  "version": "2.10.5",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://pubmed.caseyjhand.com/mcp"
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@cyanheads/pubmed-mcp-server",
+      "runtimeHint": "bun",
+      "version": "2.10.5",
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "run"
+        },
+        {
+          "type": "positional",
+          "value": "start:stdio"
+        }
+      ],
+      "environmentVariables": [
+        {
+          "name": "MCP_LOG_LEVEL",
+          "description": "Sets the minimum log level for output (e.g., 'debug', 'info', 'warn').",
+          "format": "string",
+          "isRequired": false,
+          "default": "info"
+        },
+        {
+          "name": "NCBI_API_KEY",
+          "description": "NCBI API key for higher rate limits (10 req/s vs 3 req/s).",
+          "format": "string",
+          "isRequired": false
+        },
+        {
+          "name": "NCBI_ADMIN_EMAIL",
+          "description": "Contact email sent with NCBI requests (recommended by NCBI).",
+          "format": "string",
+          "isRequired": false
+        },
+        {
+          "name": "UNPAYWALL_EMAIL",
+          "description": "Contact email for Unpaywall. When set, pubmed_fetch_fulltext falls back to Unpaywall open-access copies for DOIs not in PMC.",
+          "format": "string",
+          "isRequired": false
+        }
+      ],
+      "transport": {
+        "type": "stdio"
+      }
+    },
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@cyanheads/pubmed-mcp-server",
+      "runtimeHint": "bun",
+      "version": "2.10.5",
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "run"
+        },
+        {
+          "type": "positional",
+          "value": "start:http"
+        }
+      ],
+      "environmentVariables": [
+        {
+          "name": "MCP_HTTP_HOST",
+          "description": "The hostname for the HTTP server.",
+          "format": "string",
+          "isRequired": false,
+          "default": "127.0.0.1"
+        },
+        {
+          "name": "MCP_HTTP_PORT",
+          "description": "The port to run the HTTP server on.",
+          "format": "string",
+          "isRequired": false,
+          "default": "3010"
+        },
+        {
+          "name": "MCP_HTTP_ENDPOINT_PATH",
+          "description": "The endpoint path for the MCP server.",
+          "format": "string",
+          "isRequired": false,
+          "default": "/mcp"
+        },
+        {
+          "name": "MCP_PUBLIC_URL",
+          "description": "Public origin override for deployments behind a TLS-terminating reverse proxy (e.g. https://mcp.example.com).",
+          "format": "string",
+          "isRequired": false
+        },
+        {
+          "name": "MCP_AUTH_MODE",
+          "description": "Authentication mode to use: 'none', 'jwt', or 'oauth'.",
+          "format": "string",
+          "isRequired": false,
+          "default": "none"
+        },
+        {
+          "name": "MCP_LOG_LEVEL",
+          "description": "Sets the minimum log level for output (e.g., 'debug', 'info', 'warn').",
+          "format": "string",
+          "isRequired": false,
+          "default": "info"
+        },
+        {
+          "name": "NCBI_API_KEY",
+          "description": "NCBI API key for higher rate limits (10 req/s vs 3 req/s).",
+          "format": "string",
+          "isRequired": false
+        },
+        {
+          "name": "NCBI_ADMIN_EMAIL",
+          "description": "Contact email sent with NCBI requests (recommended by NCBI).",
+          "format": "string",
+          "isRequired": false
+        },
+        {
+          "name": "UNPAYWALL_EMAIL",
+          "description": "Contact email for Unpaywall. When set, pubmed_fetch_fulltext falls back to Unpaywall open-access copies for DOIs not in PMC.",
+          "format": "string",
+          "isRequired": false
+        }
+      ],
+      "transport": {
+        "type": "streamable-http",
+        "url": "http://localhost:3010/mcp"
+      }
+    }
+  ]
+}

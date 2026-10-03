@@ -1,0 +1,55 @@
+논문: JTRM-D-26-00308R2
+제목: Integrative Multi-Modal Transcriptomic Identification of Metastatic Potential Cells Reveals Mechanistic Insights and Pro-Metastatic Ecosystems in Breast Cancer
+저널: Journal of Translational Medicine
+유형: Research Article (초안)
+
+======= 개요 =======
+scMPC라는 transfer-learning 프레임워크를 개발하여 단일세포 전사체 데이터에서 전이 잠재력 세포(MPCs)를 식별하는 연구.
+26명 유방암 환자(림프절 전이 있음)의 scRNA-seq 데이터에 적용.
+
+주요 발견:
+- MPCs는 환자 특이적 진화 궤적을 따라 발생
+- 중간엽 특징을 가진 가소성 중간 상태 점유
+- AP-1 family, KLF6, CEBPD 등 전사인자에 의해 조절
+- 공간 전사체학: C3-C3AR1, VEGFA-VEGFR1 등 ligand-receptor 상호작용으로 TME 리모델링
+- MPC 유전자 시그니처: 림프절 전이 및 조기 재발 예측 가능성
+
+======= Reviewer #1의 주요 지적과 저자 응답 =======
+
+1. 생물학적 인과관계 과장 주장 완화
+- Reviewer: "MPCs shape a pro-metastatic tumor ecosystem" 같은 표현이 과함. 실험적 검증 없이 인과적 언어 사용.
+- 저자: 수용. "associated with", "predicted to engage", "may contribute to" 등으로 완화. Abstract, Introduction, Results, Discussion, Figure 제목까지 전면 수정.
+
+2. CellChat 기반 TME 상호작용 주장의 실험적 검증 부족
+- Reviewer: VEGFA-VEGFR1, C3-C3AR1, CXCL12 관련 시그널링이 단일 환자 관찰에 불과. in vitro co-culture 또는 단백질 수준 공간 검증 필요.
+- 저자: 수용. 계산적 예측임을 명확히 하고 표현 완화.
+
+3. CNV 추론만으로 clonal origin, seeding 패턴, 17q gain의 인과적 역할 주장
+- Reviewer: inferCNV, pseudotime으로는 "MPCs가 특정 clone에서 기원", "monoclonal/polyclonal seeding", "17q gain이 전이를 drove"라는 결론을 확정적으로 내릴 수 없음.
+- 저자: 수용. "consistent with", "suggestive of"로 수정. Discussion에 orthogonal 검증(scDNA-seq, WES/WGS, lineage tracing) 필요성 명시.
+
+4. mRNA 기반 PPI 네트워크를 기능적 단백질 네트워크처럼 다루는 문제
+- Reviewer: mRNA abundance ≠ 단백질 abundance, 번역후 조절, 단백질 복합체 빈도. Human Protein Atlas 6개 유전자 교차검증만으로는 부족.
+- 저자: 수용. MPC 시그니처를 "mRNA-derived, PPI-prioritized candidate signature"로 명시. 단백질 수준 검증 없이는 네트워크 자체를 validated로 주장할 수 없음을 인정.
+
+5. MPC 검증 시 전이 관련 프로그램의 순환성 문제
+- Reviewer: scMPC 개발에 사용된 전이 관련 마커와 검증 마커가 중복될 가능성.
+- 저자: ALCAM, VIM, SPARC는 22개 M_signatures에 포함되지 않아 독립 검증 마커로 사용. SOX9, NEAT1, CCL5는 하나 이상의 M_signatures에 포함되어 supportive 특징으로만 제시. 추가로 cell cycle, hypoxia, stress response 프로그램을 회귀 제거한 민감도 분석 수행 → MPC 라벨이 대체로 일관됨(ARI 0.57, Jaccard 0.74 등).
+
+6. MPC 시그니처의 임상적 "predictor" 주장
+- Reviewer: p=0.036의 다변량 연관성만으로는 임상적으로 실행 가능한 "predictor"라고 할 수 없음. AUC/ROC, calibration, 기존 임상 변수 대비 증분 가치 필요.
+- 저자: 수용. "predictor", "independent predictor", "predictive signature", "clinically actionable" 용어 삭제. METABRIC 코호트(n=1,888)에서 36개월 RFS에 대한 다변량 Cox: HR=1.17 (95% CI 1.04-1.32, P=0.011). NPI-adjusted 민감도 분석에서도 일관됨(HR=1.16, P=0.015).
+
+7. Random Gene Set(RGS) 선택 기준의 관대함
+- Reviewer: 1,000,000개 RGS 중 하나라도 AUC, balanced accuracy, MCC, Kappa의 상위 10%에 들면 통과 → 너무 관대.
+- 저자: RGS 절차의 목적이 각 데이터셋에서 독립적 예측 시그니처를 만드는 것이 아니라, 데이터셋 간 통합을 위한 강건한 전이 관련 유전자 랭킹 생성이므로 원래 프레임워크 유지. 순열 분석은 선택 기준이 아닌 민감도 평가로 추가.
+
+======= Figures =======
+Figure 1: scMPC 프레임워크 개요 및 MPC 식별
+Figure 2: scMPC 식별 MPC의 특성화 및 검증
+Figure 3: MPC의 유전체 진화, 세포 상태 동역학, 조절 프로그램
+Figure 4: MPC-TME 상호작용
+Figure 5: MPC 시그니처 식별 및 검증
+
+======= Supplementary =======
+Supplementary Tables 1-6, Supplementary Figure 10, Response_to_Reviewer1.docx, Response_to_Reviewer2.docx

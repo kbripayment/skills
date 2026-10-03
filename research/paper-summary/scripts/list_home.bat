@@ -1,0 +1,1 @@
+bash -c "ls -la /c/Users/user/*.py /c/Users/user/*.bat 2>/dev/null || echo 'no matches'; echo '---'; ls -la \"C:/Users/user\"/*.py \"C:/Users/user\"/*.bat \"C:/Users/user\"/*.txt 2>/dev/null | grep --color=never '\.py\|\.bat\|\.txt' || echo 'none'"
